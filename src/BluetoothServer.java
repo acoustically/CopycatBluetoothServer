@@ -1,15 +1,17 @@
 /**
  * Created by acoustically on 16. 11. 25.
  */
-import java.io.IOException;
-import java.util.Date;
+
 import javax.bluetooth.LocalDevice;
 import javax.bluetooth.ServiceRecord;
 import javax.microedition.io.Connector;
 import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Date;
+
 public class BluetoothServer {
   //Standard SerialPortService ID
   static final String serverUUID = "0000110100001000800000805f9b34fb";
@@ -49,19 +51,31 @@ public class BluetoothServer {
     }
     public void run() {
       try {
-        byte[] buff = new byte[512];
-        int n = 0;
-        while ((n = btIn.read(buff)) > 0) {
-          String data = new String(buff, 0, n);
-          log("Receive:"+data);
-          btOut.write(data.toUpperCase().getBytes());
-          btOut.flush();
+        while (true) {
+          System.out.println("ready");
+          int data = readData();
+          if (data == 10) {
+            btOut.write(stringToBytes("some strings"));
+            btOut.flush();
+          } else if(data == -1) {
+            break;
+          }
         }
-      } catch (Throwable t) {
-        t.printStackTrace();
+      } catch (Exception e) {
+        System.out.println("Exception occur");
+        e.printStackTrace();
       } finally {
         close();
       }
+    }
+    private byte[] stringToBytes(String string) {
+      return string.getBytes();
+    }
+    private int readData() throws Exception{
+      int data = btIn.read();
+      System.out.println("Receive:" + data);
+      System.out.println(data + "");
+      return data;
     }
     public void close() {
       log("Session Close");
@@ -73,11 +87,8 @@ public class BluetoothServer {
   public static void main(String[] args) throws Exception {
 
     BluetoothServer server = new BluetoothServer();
-
-    while (true) {
       Session session = server.accept();
       new Thread(session).start();
-    }
    }
   private static void log(String msg) {
     System.out.println("["+(new Date()) + "] " + msg);
