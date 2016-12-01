@@ -1,17 +1,21 @@
+import javax.imageio.ImageIO;
 import javax.microedition.io.StreamConnection;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import static com.sun.activation.registries.LogSupport.log;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.nio.file.Files;
 
 /**
  * Created by acoustically on 16. 11. 29.
  */
 public class ReadWriteThread extends Thread {
-  private StreamConnection channel = null;
-  private InputStream btIn = null;
-  private OutputStream btOut = null;
+  private StreamConnection channel;
+  private InputStream btIn;
+  private OutputStream btOut;
+  private Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
   public ReadWriteThread(StreamConnection channel) throws IOException {
     this.channel = channel;
@@ -24,9 +28,20 @@ public class ReadWriteThread extends Thread {
         System.out.println("ready");
         int data = readData();
         if (data == 10) {
-          btOut.write(stringToBytes("some strings"));
+          String stringData = getStringFromClipboard();
+          BufferedImage imageData = getImageFromClipboard();
+          if(imageData == null) {
+            btOut.write(1);
+            btOut.write(stringToBytes(stringData));
+          } else if (stringData == null) {
+            btOut.write(2);
+            btOut.write(fileToBytes(imageToFile(imageData)));
+            btOut.write(stringToBytes("end"));
+          }
           btOut.flush();
         } else if(data == -1) {
+          close();
+          this.close();
           break;
         }
       }
@@ -37,19 +52,55 @@ public class ReadWriteThread extends Thread {
       close();
     }
   }
+  private String getStringFromClipboard() throws Exception {
+    Transferable contents = getContentsClipboard();
+    if(contents.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+      return (String) contents.getTransferData(DataFlavor.stringFlavor);
+    } else {
+      return null;
+    }
+  }
+  private BufferedImage getImageFromClipboard() throws Exception {
+    Transferable contents = getContentsClipboard();
+    if(contents.isDataFlavorSupported(DataFlavor.imageFlavor)) {
+      return (BufferedImage) contents.getTransferData(DataFlavor.imageFlavor);
+    } else {
+      return null;
+    }
+  }
+  private Transferable getContentsClipboard() throws Exception {
+    return clipboard.getContents(clipboard);
+  }
   private byte[] stringToBytes(String string) {
     return string.getBytes();
+  }
+  private byte[] fileToBytes(File file) throws Exception{
+    System.out.println(Files.readAllBytes(file.toPath()).length);
+    return Files.readAllBytes(file.toPath());
+  }
+  private File imageToFile(BufferedImage image) throws Exception{
+    File imageFile = new File("TempImage.png");
+    ImageIO.write(image, "PNG", imageFile);
+    return imageFile;
   }
   private int readData() throws Exception{
     int data = btIn.read();
     System.out.println("Receive:" + data);
-    System.out.println(data + "");
     return data;
   }
   public void close() {
-    log("Session Close");
-    if (btIn    != null) try {btIn.close();} catch (Exception e) {/*ignore*/}
-    if (btOut   != null) try {btOut.close();} catch (Exception e) {/*ignore*/}
-    if (channel != null) try {channel.close();} catch (Exception e) {/*ignore*/}
+    System.out.println("Session Close");
+    try {
+      if (btIn != null)
+        btIn.close();
+      if (btOut != null)
+        btOut.close();
+      if (channel != null)
+        channel.close();
+    }
+    catch (Exception e)
+    {
+      System.out.println("Close Exception");
+    }
   }
 }

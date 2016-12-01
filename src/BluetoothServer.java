@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class BluetoothServer {
   static final String serverUUID = "0000110100001000800000805f9b34fb";
-  private StreamConnectionNotifier server = null;
+  private StreamConnectionNotifier server;
 
   public BluetoothServer() throws IOException {
     server = (StreamConnectionNotifier) Connector.open(
