@@ -32,11 +32,12 @@ public class ReadWriteThread extends Thread {
           BufferedImage imageData = getImageFromClipboard();
           if(imageData == null) {
             btOut.write(1);
+            btOut.write(lengthToBytes(stringToBytes(stringData).length));
             btOut.write(stringToBytes(stringData));
           } else if (stringData == null) {
             btOut.write(2);
+            btOut.write(lengthToBytes(Files.readAllBytes(imageToFile(imageData).toPath()).length));
             btOut.write(fileToBytes(imageToFile(imageData)));
-            btOut.write(stringToBytes("end"));
           }
           btOut.flush();
         } else if(data == -1) {
@@ -75,8 +76,11 @@ public class ReadWriteThread extends Thread {
     return string.getBytes();
   }
   private byte[] fileToBytes(File file) throws Exception{
-    System.out.println(Files.readAllBytes(file.toPath()).length);
     return Files.readAllBytes(file.toPath());
+  }
+  private byte[] lengthToBytes(int langth) throws Exception{
+    System.out.println(langth + "");
+    return stringToBytes(langth + "");
   }
   private File imageToFile(BufferedImage image) throws Exception{
     File imageFile = new File("TempImage.png");

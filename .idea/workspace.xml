@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3dd133fb-6eb5-46b4-85bf-8745bca9865d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BluetoothServer/BluetoothServer.class" afterPath="$PROJECT_DIR$/out/production/BluetoothServer/BluetoothServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BluetoothServer/Main.class" afterPath="$PROJECT_DIR$/out/production/BluetoothServer/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BluetoothServer/ReadWriteThread.class" afterPath="$PROJECT_DIR$/out/production/BluetoothServer/ReadWriteThread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BluetoothServer.java" afterPath="$PROJECT_DIR$/src/BluetoothServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ReadWriteThread.java" afterPath="$PROJECT_DIR$/src/ReadWriteThread.java" />
     </list>
     <ignored path="BluetoothServer.iws" />
@@ -36,8 +30,8 @@
       <file leaf-file-name="BluetoothServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BluetoothServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="601">
-              <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+            <state relative-caret-position="217">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -49,36 +43,22 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+            <state relative-caret-position="240">
+              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TempImage.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TempImage.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TempImage.png" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TempImage.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReadWriteThread.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ReadWriteThread.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ReadWriteThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="82" column="43" selection-start-line="82" selection-start-column="43" selection-end-line="82" selection-end-column="43" />
+            <state relative-caret-position="232">
+              <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="37" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2374#2375#0" expanded="true" />
-                <element signature="e#2408#2409#0" expanded="true" />
+                <element signature="e#2501#2502#0" expanded="true" />
+                <element signature="e#2535#2536#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -776,12 +756,12 @@
       <workItem from="1480427028887" duration="19000" />
       <workItem from="1480427195188" duration="1641000" />
       <workItem from="1480474153936" duration="851000" />
-      <workItem from="1480569654646" duration="15155000" />
+      <workItem from="1480569654646" duration="25526000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40902000" />
+    <option name="totallyTimeSpent" value="51273000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1920" height="1050" extended-state="0" />
@@ -860,8 +840,8 @@
           <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
-            <element signature="e#2408#2409#0" expanded="true" />
+            <element signature="e#2501#2502#0" expanded="true" />
+            <element signature="e#2535#2536#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -922,8 +902,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
-            <element signature="e#2408#2409#0" expanded="true" />
+            <element signature="e#2501#2502#0" expanded="true" />
+            <element signature="e#2535#2536#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -984,8 +964,8 @@
           <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
-            <element signature="e#2408#2409#0" expanded="true" />
+            <element signature="e#2501#2502#0" expanded="true" />
+            <element signature="e#2535#2536#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1038,8 +1018,8 @@
           <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
-            <element signature="e#2408#2409#0" expanded="true" />
+            <element signature="e#2501#2502#0" expanded="true" />
+            <element signature="e#2535#2536#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1187,15 +1167,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TempImage.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TempImage.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/BluetoothServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
-          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+        <state relative-caret-position="217">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -1203,29 +1196,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ReadWriteThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="82" column="43" selection-start-line="82" selection-start-column="43" selection-end-line="82" selection-end-column="43" />
+        <state relative-caret-position="232">
+          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="37" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
-            <element signature="e#2408#2409#0" expanded="true" />
+            <element signature="e#2501#2502#0" expanded="true" />
+            <element signature="e#2535#2536#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TempImage.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
   </component>
