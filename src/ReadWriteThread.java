@@ -1,4 +1,7 @@
-import javax.imageio.ImageIO;
+import writer.DataWriter;
+import writer.ImageWriter;
+import writer.StringWriter;
+
 import javax.microedition.io.StreamConnection;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -6,21 +9,18 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.nio.file.Files;
 
 /**
  * Created by acoustically on 16. 11. 29.
  */
 public class ReadWriteThread extends Thread {
   private StreamConnection channel;
-  private InputStream btIn;
-  private OutputStream btOut;
   private Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-
+  private InputStream reader = channel.openInputStream();
+  private OutputStream writer = channel.openOutputStream();
+  private DataWriter dataWriter;
   public ReadWriteThread(StreamConnection channel) throws IOException {
     this.channel = channel;
-    this.btIn = channel.openInputStream();
-    this.btOut = channel.openOutputStream();
   }
   public void run() {
     try {
@@ -30,16 +30,14 @@ public class ReadWriteThread extends Thread {
         if (data == 10) {
           String stringData = getStringFromClipboard();
           BufferedImage imageData = getImageFromClipboard();
+          dataWriter = null;
           if(imageData == null) {
-            btOut.write(1);
-            btOut.write(lengthToBytes(stringToBytes(stringData).length));
-            btOut.write(stringToBytes(stringData));
+            dataWriter = new StringWriter(writer, stringData);
           } else if (stringData == null) {
-            btOut.write(2);
-            btOut.write(lengthToBytes(Files.readAllBytes(imageToFile(imageData).toPath()).length));
-            btOut.write(fileToBytes(imageToFile(imageData)));
+            dataWriter = new ImageWriter(writer, imageData);
           }
-          btOut.flush();
+          dataWriter.write();
+          writer.flush();
         } else if(data == -1) {
           close();
           this.close();
@@ -72,33 +70,18 @@ public class ReadWriteThread extends Thread {
   private Transferable getContentsClipboard() throws Exception {
     return clipboard.getContents(clipboard);
   }
-  private byte[] stringToBytes(String string) {
-    return string.getBytes();
-  }
-  private byte[] fileToBytes(File file) throws Exception{
-    return Files.readAllBytes(file.toPath());
-  }
-  private byte[] lengthToBytes(int langth) throws Exception{
-    System.out.println(langth + "");
-    return stringToBytes(langth + "");
-  }
-  private File imageToFile(BufferedImage image) throws Exception{
-    File imageFile = new File("TempImage.png");
-    ImageIO.write(image, "PNG", imageFile);
-    return imageFile;
-  }
   private int readData() throws Exception{
-    int data = btIn.read();
+    int data = reader.read();
     System.out.println("Receive:" + data);
     return data;
   }
   public void close() {
     System.out.println("Session Close");
     try {
-      if (btIn != null)
-        btIn.close();
-      if (btOut != null)
-        btOut.close();
+      if (reader != null)
+        reader.close();
+      if (writer != null)
+        writer.close();
       if (channel != null)
         channel.close();
     }

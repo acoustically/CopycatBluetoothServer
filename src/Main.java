@@ -7,8 +7,8 @@ public class Main {
   public static void main(String[] args) {
     try {
         BluetoothServer server = new BluetoothServer();
-        ReadWriteThread rwTread = server.accept();
-        rwTread.start();
+        ReadWriteThread readWriteThread = server.accept();
+        readWriteThread.start();
     } catch (Exception e) {
       e.printStackTrace();
     }
