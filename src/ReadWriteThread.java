@@ -14,13 +14,13 @@ import java.io.*;
  * Created by acoustically on 16. 11. 29.
  */
 public class ReadWriteThread extends Thread {
-  private StreamConnection channel;
+  private StreamConnection socket;
   private Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-  private InputStream reader = channel.openInputStream();
-  private OutputStream writer = channel.openOutputStream();
+  private InputStream reader = socket.openInputStream();
+  private OutputStream writer = socket.openOutputStream();
   private DataWriter dataWriter;
-  public ReadWriteThread(StreamConnection channel) throws IOException {
-    this.channel = channel;
+  public ReadWriteThread(StreamConnection socket) throws IOException {
+    this.socket = socket;
   }
   public void run() {
     try {
@@ -82,8 +82,8 @@ public class ReadWriteThread extends Thread {
         reader.close();
       if (writer != null)
         writer.close();
-      if (channel != null)
-        channel.close();
+      if (socket != null)
+        socket.close();
     }
     catch (Exception e)
     {
