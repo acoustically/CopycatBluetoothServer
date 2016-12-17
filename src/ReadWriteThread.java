@@ -16,11 +16,13 @@ import java.io.*;
 public class ReadWriteThread extends Thread {
   private StreamConnection socket;
   private Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-  private InputStream reader = socket.openInputStream();
-  private OutputStream writer = socket.openOutputStream();
+  private InputStream reader;
+  private OutputStream writer;
   private DataWriter dataWriter;
   public ReadWriteThread(StreamConnection socket) throws IOException {
     this.socket = socket;
+    writer = socket.openOutputStream();
+    reader = socket.openInputStream();
   }
   public void run() {
     try {
